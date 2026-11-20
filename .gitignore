@@ -1,0 +1,26 @@
+# Données personnelles : jamais commitées
+content/cv.*.md
+!content/cv.example.md
+*.pdf
+.env
+tests/content/forbidden.local.txt
+
+# Outils
+.superpowers/
+.claude/settings.local.json
+
+# Node / Next.js
+node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/next-env.d.ts
+
+# Python
+__pycache__/
+.pytest_cache/
+.venv/
+
+# Docs internes du projet (locales, jamais commitées)
+CLAUDE.md
+docs/

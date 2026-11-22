@@ -1,0 +1,28 @@
+{
+  "meta": { "title": "[EN] …", "description": "[EN] …" },
+  "nav": {
+    "experience": "[EN] Experience",
+    "expertise": "[EN] Expertise",
+    "missions": "[EN] Projects",
+    "chat": "[EN] AI chat",
+    "contact": "[EN] Contact"
+  },
+  "hero": { "chatCta": "[EN] Chat with my AI", "scrollHint": "[EN] Scroll to see more" },
+  "sections": {
+    "keyFigures": "[EN] …",
+    "experience": "[EN] …",
+    "expertise": "[EN] …",
+    "technologies": "[EN] …",
+    "certifications": "[EN] …",
+    "contact": "[EN] …"
+  },
+  "chat": {
+    "title": "[EN] …",
+    "disclaimer": "[EN] …",
+    "suggestions": ["[EN] …"],
+    "comingSoon": "[EN] …"
+  },
+  "missions": { "title": "[EN] …" },
+  "theme": { "toggleLabel": "[EN] Toggle light / dark theme" },
+  "footer": { "text": "© Bacem Ben Atia" }
+}

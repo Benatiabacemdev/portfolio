@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "title": "Bacem Ben Atia – Expert SharePoint Online & Microsoft 365",
+    "description": "Portfolio d'un consultant freelance SharePoint et Microsoft 365 : migrations, SPFx, Power Automate, Microsoft Graph."
+  },
+  "nav": {
+    "experience": "Parcours",
+    "expertise": "Expertise",
+    "missions": "Missions",
+    "chat": "Chat IA",
+    "contact": "Contact"
+  },
+  "hero": {
+    "chatCta": "Discuter avec mon IA",
+    "scrollHint": "Faites défiler pour en voir plus"
+  },
+  "sections": {
+    "keyFigures": "Chiffres clés",
+    "experience": "Parcours",
+    "expertise": "Expertise",
+    "technologies": "Technologies",
+    "certifications": "Certifications & formation",
+    "contact": "Contact"
+  },
+  "chat": {
+    "title": "Discuter avec mon IA",
+    "disclaimer": "Cet assistant répond uniquement à partir de mon CV.",
+    "suggestions": [
+      "Quelles migrations SharePoint as-tu menées ?",
+      "Quelle est ton expérience dans la banque ?",
+      "Quand es-tu disponible ?"
+    ],
+    "comingSoon": "Bientôt disponible"
+  },
+  "missions": { "title": "Missions" },
+  "theme": { "toggleLabel": "Basculer le thème clair / sombre" },
+  "footer": { "text": "© Bacem Ben Atia" }
+}

@@ -1,0 +1,34 @@
+{
+  "identity": {
+    "name": "Prénom Nom",
+    "title": "Titre du métier",
+    "description": "Description du profil en deux ou trois phrases, reformulée (aucune phrase copiée du CV).",
+    "availability": "Disponible à partir de …",
+    "location": "Région"
+  },
+  "keyFigures": [{ "value": "10 ans", "label": "Libellé du chiffre clé" }],
+  "experiences": [
+    {
+      "id": "identifiant-unique",
+      "company": "Entreprise",
+      "role": "Rôle",
+      "start": "2020-01",
+      "end": null,
+      "summary": "Résumé reformulé de la mission.",
+      "tags": ["Technologie"]
+    }
+  ],
+  "expertise": [{ "title": "Domaine", "summary": "Savoir-faire, sans liste d'outils." }],
+  "techCategories": [{ "name": "Catégorie", "items": [{ "name": "Technologie", "logo": "technologie.svg" }] }],
+  "certifications": ["Certification"],
+  "education": ["Diplôme – École, année"],
+  "missions": [
+    {
+      "id": "identifiant-unique",
+      "title": "Titre de la mission",
+      "context": "Contexte reformulé.",
+      "actions": ["Action menée"],
+      "tags": ["Technologie"]
+    }
+  ]
+}

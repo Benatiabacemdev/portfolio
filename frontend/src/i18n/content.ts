@@ -1,18 +1,29 @@
+import fs from "node:fs";
+import path from "node:path";
+
 import type { Locale } from "./config";
 import type { Profile, Ui } from "./types";
 
-import frProfile from "@/content/fr/profile.json";
-import frUi from "@/content/fr/ui.json";
-import enProfile from "@/content/en/profile.json";
 import enUi from "@/content/en/ui.json";
+import frUi from "@/content/fr/ui.json";
 
-// L'annotation de type fait vérifier chaque JSON par le compilateur :
-// une clé manquante dans une langue = erreur de build.
-const contents: Record<Locale, { profile: Profile; ui: Ui }> = {
-  fr: { profile: frProfile, ui: frUi },
-  en: { profile: enProfile, ui: enUi },
-};
+// Textes d'interface : génériques, commités, importés directement (vérifiés par TypeScript).
+const uis: Record<Locale, Ui> = { fr: frUi, en: enUi };
+
+const CONTENT_DIR = path.join(process.cwd(), "src", "content");
+
+/**
+ * Profil d'une langue, lu au build (composants serveur uniquement).
+ * - profile.json : contenu réel, local, gitignoré ;
+ * - profile.example.json : gabarit commité, utilisé si le réel est absent (clone Git, CI).
+ * La structure est vérifiée par les tests (src/i18n/content.test.ts).
+ */
+export function loadProfile(lang: Locale, contentDir: string = CONTENT_DIR): Profile {
+  const real = path.join(contentDir, lang, "profile.json");
+  const file = fs.existsSync(real) ? real : path.join(contentDir, lang, "profile.example.json");
+  return JSON.parse(fs.readFileSync(file, "utf8")) as Profile;
+}
 
 export function getContent(lang: Locale): { profile: Profile; ui: Ui } {
-  return contents[lang];
+  return { profile: loadProfile(lang), ui: uis[lang] };
 }

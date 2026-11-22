@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import type { Locale } from "@/i18n/config";
+import { localePath } from "@/i18n/paths";
 import type { Ui } from "@/i18n/types";
 import styles from "./Header.module.css";
 
@@ -11,15 +12,16 @@ type HeaderProps = {
 };
 
 // Barre horizontale collée en haut (position: sticky) : c'est la page qui défile.
-// Les ancres pointent vers /<lang>/#section pour marcher aussi depuis /missions ou /chat.
+// Les ancres pointent vers l'accueil (/#section) pour marcher aussi depuis /missions ou /chat.
+// localePath : pas de préfixe pour le français (langue par défaut), /en/... pour l'anglais.
 export function Header({ lang, name, ui }: HeaderProps) {
-  const home = `/${lang}/`;
+  const home = localePath(lang, "/");
   const links = [
-    { href: `${home}#parcours`, label: ui.nav.experience },
-    { href: `${home}#expertise`, label: ui.nav.expertise },
-    { href: `${home}missions/`, label: ui.nav.missions },
-    { href: `${home}chat/`, label: ui.nav.chat },
-    { href: `${home}#contact`, label: ui.nav.contact },
+    { href: localePath(lang, "/#parcours"), label: ui.nav.experience },
+    { href: localePath(lang, "/#expertise"), label: ui.nav.expertise },
+    { href: localePath(lang, "/missions/"), label: ui.nav.missions },
+    { href: localePath(lang, "/chat/"), label: ui.nav.chat },
+    { href: localePath(lang, "/#contact"), label: ui.nav.contact },
   ];
 
   return (

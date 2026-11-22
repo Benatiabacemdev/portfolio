@@ -24,3 +24,9 @@ __pycache__/
 # Docs internes du projet (locales, jamais commitées)
 CLAUDE.md
 docs/
+
+# Photos perso : copiées à part (comme cv.fr.md), jamais commitées
+frontend/public/photo*
+
+# Profil réel du site : local seulement (le dépôt contient profile.example.json)
+frontend/src/content/*/profile.json

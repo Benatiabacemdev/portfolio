@@ -31,7 +31,6 @@ export type Profile = {
   identity: {
     name: string;
     title: string;
-    tagline: string;
     description: string;
     availability: string;
     location: string;

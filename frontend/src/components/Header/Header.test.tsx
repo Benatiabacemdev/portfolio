@@ -11,20 +11,26 @@ function renderHeader() {
 
 test("le nom renvoie vers l'accueil de la langue", () => {
   renderHeader();
-  expect(screen.getByRole("link", { name: profile.identity.name })).toHaveAttribute("href", "/fr/");
+  expect(screen.getByRole("link", { name: profile.identity.name })).toHaveAttribute("href", "/");
 });
 
 test("les ancres de l'accueil fonctionnent depuis n'importe quelle page", () => {
   renderHeader();
-  expect(screen.getByRole("link", { name: ui.nav.experience })).toHaveAttribute("href", "/fr/#parcours");
-  expect(screen.getByRole("link", { name: ui.nav.expertise })).toHaveAttribute("href", "/fr/#expertise");
-  expect(screen.getByRole("link", { name: ui.nav.contact })).toHaveAttribute("href", "/fr/#contact");
+  expect(screen.getByRole("link", { name: ui.nav.experience })).toHaveAttribute("href", "/#parcours");
+  expect(screen.getByRole("link", { name: ui.nav.expertise })).toHaveAttribute("href", "/#expertise");
+  expect(screen.getByRole("link", { name: ui.nav.contact })).toHaveAttribute("href", "/#contact");
 });
 
 test("missions et chat sont des pages dédiées", () => {
   renderHeader();
-  expect(screen.getByRole("link", { name: ui.nav.missions })).toHaveAttribute("href", "/fr/missions/");
-  expect(screen.getByRole("link", { name: ui.nav.chat })).toHaveAttribute("href", "/fr/chat/");
+  expect(screen.getByRole("link", { name: ui.nav.missions })).toHaveAttribute("href", "/missions/");
+  expect(screen.getByRole("link", { name: ui.nav.chat })).toHaveAttribute("href", "/chat/");
+});
+
+test("en anglais, les liens sont préfixés par /en", () => {
+  render(<Header lang="en" name={profile.identity.name} ui={getContent("en").ui} />);
+  expect(screen.getByRole("link", { name: profile.identity.name })).toHaveAttribute("href", "/en/");
+  expect(screen.getByRole("link", { name: getContent("en").ui.nav.chat })).toHaveAttribute("href", "/en/chat/");
 });
 
 test("la barre est un <header> avec une navigation", () => {

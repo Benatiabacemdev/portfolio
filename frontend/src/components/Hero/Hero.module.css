@@ -263,6 +263,18 @@
       margin-bottom: -20svh;
     }
 
+    /* La scène chevauche alors le haut de la section suivante : elle laisse passer les clics
+       (sinon la première mission du Parcours ne s'ouvre plus) ; seul son contenu les reçoit. */
+    .hero {
+      pointer-events: none;
+    }
+
+    .portrait,
+    .title,
+    .details {
+      pointer-events: auto;
+    }
+
     /* Petit écran : les cartes sont sous la photo. Au repos elles ne prennent aucune hauteur,
        sinon un vide repousserait la description et le bouton hors de l'écran. */
     @media (max-width: 640px) {

@@ -62,6 +62,9 @@ export type Ui = {
     certifications: string;
     contact: string;
   };
+  experience: { present: string };
+  certifications: { certificationsTitle: string; educationTitle: string };
+  contact: { text: string; linkedinCta: string; chatCta: string };
   chat: { title: string; disclaimer: string; suggestions: string[]; comingSoon: string };
   missions: { title: string };
   theme: { toggleLabel: string };

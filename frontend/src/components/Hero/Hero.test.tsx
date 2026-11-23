@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 
 import { site } from "@/config/site";
 import { getContent } from "@/i18n/content";
@@ -67,4 +67,15 @@ test("le lien de défilement pointe vers la section suivante (#chiffres)", () =>
     "href",
     "#chiffres",
   );
+});
+
+test("les chiffres clés sont dans le hero, en liste nommée, et l'ancre #chiffres existe", () => {
+  const { container } = renderHero();
+  const list = screen.getByRole("list", { name: ui.sections.keyFigures });
+  expect(within(list).getAllByRole("listitem")).toHaveLength(profile.keyFigures.length);
+  for (const figure of profile.keyFigures) {
+    expect(within(list).getByText(figure.value)).toBeInTheDocument();
+    expect(within(list).getByText(figure.label)).toBeInTheDocument();
+  }
+  expect(container.querySelector("section#hero #chiffres")).toBeInTheDocument();
 });

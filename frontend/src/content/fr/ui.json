@@ -22,6 +22,18 @@
     "certifications": "Certifications & formation",
     "contact": "Contact"
   },
+  "experience": {
+    "present": "aujourd'hui"
+  },
+  "certifications": {
+    "certificationsTitle": "Certifications",
+    "educationTitle": "Formation"
+  },
+  "contact": {
+    "text": "Un projet SharePoint ou Microsoft 365 à confier ?",
+    "linkedinCta": "Me contacter sur LinkedIn",
+    "chatCta": "Poser une question à mon IA"
+  },
   "chat": {
     "title": "Discuter avec mon IA",
     "disclaimer": "Cet assistant répond uniquement à partir de mon CV.",
@@ -32,7 +44,13 @@
     ],
     "comingSoon": "Bientôt disponible"
   },
-  "missions": { "title": "Missions" },
-  "theme": { "toggleLabel": "Basculer le thème clair / sombre" },
-  "footer": { "text": "© Bacem Ben Atia" }
+  "missions": {
+    "title": "Missions"
+  },
+  "theme": {
+    "toggleLabel": "Basculer le thème clair / sombre"
+  },
+  "footer": {
+    "text": "© Bacem Ben Atia"
+  }
 }

@@ -1,16 +1,50 @@
-/* Hero plein écran (moins la barre du haut), contenu centré horizontalement et calé en haut. */
+/*
+ * Hero : photo, titre, description, actions et chiffres clés.
+ *
+ * Par défaut (navigateur sans animations liées au défilement, ou mouvement réduit demandé) :
+ * tout est visible et statique, les chiffres sont à gauche et à droite de la photo.
+ *
+ * Avec animation (bloc @supports en bas du fichier) : la section est plus haute que l'écran
+ * de --hero-scroll, et la scène reste collée en haut pendant ce défilement. La transformation
+ * suit la molette : la description s'estompe et se replie, les espaceurs poussent la photo et
+ * le titre au centre, les chiffres arrivent de part et d'autre de la photo.
+ */
 .hero {
+  /* Longueur du défilement consacrée à la transformation. */
+  --hero-scroll: 70svh;
+  position: relative;
+}
+
+.stage {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
   min-height: calc(100svh - var(--header-height));
   padding: clamp(24px, 6vh, 56px) var(--space-page) 48px;
   text-align: center;
 }
 
+/* Au repos, le contenu est calé en haut ; en fin d'animation, les deux espaceurs ont la même
+   taille et centrent la photo et le titre verticalement. */
+.spacer {
+  flex-grow: 0;
+}
+
+/* Grille à 3 colonnes : chiffre | photo | chiffre. */
+.portrait {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px 32px;
+  width: 100%;
+  max-width: 760px;
+  margin-bottom: 28px;
+}
+
 /* Photo ou initiales : même cercle. */
 .avatar {
+  grid-column: 2;
+  grid-row: 1;
   width: 160px;
   height: 160px;
   border-radius: 50%;
@@ -18,7 +52,6 @@
   object-position: center top;
   border: 5px solid var(--color-surface);
   box-shadow: 0 10px 30px color-mix(in srgb, var(--color-primary) 25%, transparent);
-  margin-bottom: 28px;
 }
 
 .initials {
@@ -32,6 +65,52 @@
   letter-spacing: 0.02em;
 }
 
+/* La liste disparaît de la mise en page : ses cartes deviennent des cases de la grille. */
+.figures {
+  display: contents;
+}
+
+.figure {
+  /* Point de départ de l'animation : les cartes sortent de derrière la photo. */
+  --from-x: 60px;
+  --from-y: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 280px;
+  margin: 0;
+  padding: 18px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  list-style: none;
+}
+
+.figure:nth-child(odd) {
+  grid-column: 1;
+  justify-self: end;
+  text-align: right;
+}
+
+.figure:nth-child(even) {
+  --from-x: -60px;
+  grid-column: 3;
+  justify-self: start;
+  text-align: left;
+}
+
+.figureValue {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-primary);
+}
+
+.figureLabel {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
 /* Titre du métier = h1 de la page (référencement et lecteurs d'écran). */
 .title {
   margin: 0 0 20px;
@@ -42,10 +121,21 @@
   color: var(--color-primary);
 }
 
+/* Description + actions. La grille permet de replier le bloc (1fr → 0fr) pendant l'animation. */
+.details {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.detailsInner {
+  min-height: 0;
+  overflow: hidden;
+}
+
 /* Description. Largeur limitée pour un texte centré lisible. */
 .text {
   max-width: 52ch;
-  margin: 0 0 12px;
+  margin: 0 auto 12px;
   font-size: clamp(18px, 2.4vw, 21px);
   line-height: 1.5;
   color: var(--color-text);
@@ -57,7 +147,8 @@
   align-items: center;
   justify-content: center;
   gap: 16px 24px;
-  margin-top: 20px;
+  /* Marge pour que l'ombre du bouton ne soit pas coupée par overflow: hidden. */
+  padding: 20px 0 16px;
 }
 
 .chatCta {
@@ -88,4 +179,131 @@
 .scrollHint:hover,
 .scrollHint:focus-visible {
   color: var(--color-primary);
+}
+
+/* Ancre « Faites défiler » : sans animation, elle pointe sur les chiffres (haut de la section). */
+.anchor {
+  position: absolute;
+  top: 0;
+}
+
+/* Petit écran : pas la place à côté de la photo, les chiffres passent dessous, côte à côte. */
+@media (max-width: 640px) {
+  .portrait {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .avatar {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+
+  .figure,
+  .figure:nth-child(odd),
+  .figure:nth-child(even) {
+    --from-x: 0px;
+    --from-y: 24px;
+    grid-column: auto;
+    grid-row: 2;
+    justify-self: stretch;
+    max-width: none;
+    padding: 14px;
+    text-align: center;
+  }
+
+  .figureValue {
+    font-size: 22px;
+  }
+}
+
+/* ---------- Animation liée au défilement (CSS seul) ---------- */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero {
+      height: calc(100svh - var(--header-height) + var(--hero-scroll));
+    }
+
+    .stage {
+      position: sticky;
+      top: var(--header-height);
+      height: calc(100svh - var(--header-height));
+      min-height: 0;
+    }
+
+    /* animation-timeline et animation-range viennent APRÈS le raccourci animation,
+       qui les remet à zéro. */
+    .spacer {
+      animation: hero-grow linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 var(--hero-scroll);
+    }
+
+    /* Première moitié : la description s'estompe et se replie. */
+    .details {
+      animation: hero-collapse linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 calc(var(--hero-scroll) * 0.6);
+    }
+
+    /* Seconde moitié : les chiffres apparaissent. */
+    .figure {
+      animation: hero-figure-in linear both;
+      animation-timeline: scroll(root);
+      animation-range: calc(var(--hero-scroll) * 0.35) var(--hero-scroll);
+    }
+
+    /* L'ancre pointe sur l'état final de la transformation. */
+    .anchor {
+      top: var(--hero-scroll);
+    }
+
+    /* En fin de transformation, le bas de la scène est vide (contenu centré) : la section
+       suivante remonte d'autant et entre dans l'écran pendant que la scène est encore collée. */
+    .hero {
+      margin-bottom: -20svh;
+    }
+
+    /* Petit écran : les cartes sont sous la photo. Au repos elles ne prennent aucune hauteur,
+       sinon un vide repousserait la description et le bouton hors de l'écran. */
+    @media (max-width: 640px) {
+      .figure {
+        overflow: hidden;
+        animation-name: hero-figure-grow;
+      }
+    }
+  }
+}
+
+@keyframes hero-grow {
+  to {
+    flex-grow: 1;
+  }
+}
+
+@keyframes hero-collapse {
+  to {
+    grid-template-rows: 0fr;
+    opacity: 0;
+    /* Bascule à la toute fin : les liens repliés ne restent pas atteignables au clavier. */
+    visibility: hidden;
+  }
+}
+
+@keyframes hero-figure-grow {
+  from {
+    max-height: 0;
+    padding-block: 0;
+    border-width: 0;
+    opacity: 0;
+  }
+  to {
+    max-height: 200px;
+  }
+}
+
+@keyframes hero-figure-in {
+  from {
+    opacity: 0;
+    transform: translate(var(--from-x), var(--from-y));
+  }
 }

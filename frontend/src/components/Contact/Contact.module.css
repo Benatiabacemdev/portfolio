@@ -1,0 +1,47 @@
+.card {
+  padding: 24px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.text {
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.availability {
+  margin: 0 0 18px;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.linkedin,
+.chat {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.linkedin {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.chat {
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+}

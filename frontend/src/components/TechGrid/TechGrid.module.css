@@ -1,0 +1,34 @@
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  align-items: start;
+  gap: 8px 16px;
+}
+
+.category {
+  padding-top: 5px;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Sur mobile : la catégorie passe au-dessus de ses technologies. */
+@media (max-width: 600px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

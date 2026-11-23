@@ -1,0 +1,28 @@
+.grid {
+  display: grid;
+  /* 300px mini : 3 colonnes sur ordinateur (6 domaines = 2 lignes pleines), 1 sur mobile. */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  padding: 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.title {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.summary {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-muted);
+}

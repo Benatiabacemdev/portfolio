@@ -1,5 +1,8 @@
 {
-  "meta": { "title": "[EN] …", "description": "[EN] …" },
+  "meta": {
+    "title": "[EN] …",
+    "description": "[EN] …"
+  },
   "nav": {
     "experience": "[EN] Experience",
     "expertise": "[EN] Expertise",
@@ -7,7 +10,10 @@
     "chat": "[EN] AI chat",
     "contact": "[EN] Contact"
   },
-  "hero": { "chatCta": "[EN] Chat with my AI", "scrollHint": "[EN] Scroll to see more" },
+  "hero": {
+    "chatCta": "[EN] Chat with my AI",
+    "scrollHint": "[EN] Scroll to see more"
+  },
   "sections": {
     "keyFigures": "[EN] …",
     "experience": "[EN] …",
@@ -16,13 +22,33 @@
     "certifications": "[EN] …",
     "contact": "[EN] …"
   },
+  "experience": {
+    "present": "[EN] present"
+  },
+  "certifications": {
+    "certificationsTitle": "[EN] Certifications",
+    "educationTitle": "[EN] Education"
+  },
+  "contact": {
+    "text": "[EN] …",
+    "linkedinCta": "[EN] Contact me on LinkedIn",
+    "chatCta": "[EN] Ask my AI"
+  },
   "chat": {
     "title": "[EN] …",
     "disclaimer": "[EN] …",
-    "suggestions": ["[EN] …"],
+    "suggestions": [
+      "[EN] …"
+    ],
     "comingSoon": "[EN] …"
   },
-  "missions": { "title": "[EN] …" },
-  "theme": { "toggleLabel": "[EN] Toggle light / dark theme" },
-  "footer": { "text": "© Bacem Ben Atia" }
+  "missions": {
+    "title": "[EN] …"
+  },
+  "theme": {
+    "toggleLabel": "[EN] Toggle light / dark theme"
+  },
+  "footer": {
+    "text": "© Bacem Ben Atia"
+  }
 }
